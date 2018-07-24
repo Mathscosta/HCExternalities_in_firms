@@ -1,0 +1,14 @@
+@article{10.2307/2523830,
+ ISSN = {00197939, 2162271X},
+ URL = {http://www.jstor.org/stable/2523830},
+ abstract = {This paper estimates the extent to which workers with different personal characteristics are likely to be employed in the public versus the private sector. The author develops a reduced-form two-way probit model to analyze workers' choice between the two employment sectors, together with a three-way model that breaks this decision down to a choice among private, federal, and state and local government jobs. She estimates these models using May 1979 CPS data. The results show that, other things equal, government employment is preferred by the "protected" groups of veterans, nonwhites, and women. In addition, highly educated and more experienced workers are more likely to choose the public sector. Significant differences are found within the public sector between federal and state-local choices. The results also indicate that sectoral choice is influenced by more than wage comparisons.},
+ author = {Rebecca M. Blank},
+ journal = {Industrial and Labor Relations Review},
+ number = {2},
+ pages = {211--224},
+ publisher = {Sage Publications, Inc.},
+ title = {An Analysis of Workers' Choice between Employment in the Public and Private Sectors},
+ volume = {38},
+ year = {1985}
+}
+

@@ -1,0 +1,16 @@
+
+TY  - JOUR
+AU  - Su Xuhong
+AU  - Bozeman Barry
+TI  - Dynamics of Sector Switching: Hazard Models Predicting Changes from Private Sector Jobs to Public and Nonprofit Sector Jobs
+JO  - Public Administration Review
+VL  - 69
+IS  - 6
+SN  - 0033-3352
+UR  - https://doi.org/10.1111/j.1540-6210.2009.02068.x
+DO  - doi:10.1111/j.1540-6210.2009.02068.x
+SP  - 1106
+EP  - 1114
+PY  - 2009
+AB  - Policy makers and public managers emphasize the importance of bringing private sector experience and skills into the public and nonprofit sectors. One result is an increased focus on privatization and contracting out, developments to which researchers have been attentive. However, the long-standing practice of hiring people with industrial experience into the public and nonprofit sectors has received remarkably little attention. This study, based on questionnaire responses from mid- and upper-level personnel in public and nonprofit sector organizations, attempts to understand the dynamics of sector switching from the private into either the public or nonprofit sector. Using event history analysis, the article looks at switching patterns. The probability of switching into the public sector is much higher for those who held a managerial occupation in their previous private sector job than for those who held professional and technical positions. Having more subordinates in a previous private sector job is associated with a lower likelihood of switching into a public sector job. By contrast, switching into the nonprofit sector is more often associated with a promotion.
+ER  - 

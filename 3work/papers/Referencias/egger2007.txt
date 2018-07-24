@@ -1,0 +1,18 @@
+
+TY  - JOUR
+AU  - Egger Peter
+AU  - Pfaffermayr Michael
+AU  - Weber Andrea
+TI  - Sectoral adjustment of employment to shifts in outsourcing and trade: evidence from a dynamic fixed effects multinomial logit model
+JO  - Journal of Applied Econometrics
+JA  - J. Appl. Econ.
+VL  - 22
+IS  - 3
+SN  - 0883-7252
+UR  - https://doi.org/10.1002/jae.914
+DO  - doi:10.1002/jae.914
+SP  - 559
+EP  - 580
+PY  - 2007
+AB  - Abstract This paper analyzes the effects of trade and outsourcing on the transition probabilities of employment between sectors, using a dynamic multinomial logit framework with fixed effects. The data cover a sample of individual Austrian male workers over the period 1988?2001. Our results strongly support the view that international economic forces are important determinants of labor market turnover. In particular, an increase in the outsourcing intensity negatively affects the probability of staying in or changing into the manufacturing sector, even more so for industries with a comparative disadvantage. Copyright ? 2007 John Wiley & Sons, Ltd.
+ER  - 
