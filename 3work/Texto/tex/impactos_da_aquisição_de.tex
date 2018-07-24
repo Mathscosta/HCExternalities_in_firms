@@ -1,0 +1,266 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[brazilian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[round]{natbib}
+
+
+\title{Impactos da Aquisição de Níveis Elevados de Educação Sobre a Transição de Trabalhadores entre os Setores Público e Privado}
+\author{Matheus Schmeling Costa - 18/0068954}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+O serviço público parece ser uma opção atraente no Brasil. Diversos autores indicam a existência de um hiato salarial que beneficia trabalhadores deste setor (\citet{barros2000}, \citet{belluzzo2005}), especialmente aqueles nos quantis inferiores da distribuição de rendimentos. Acoplado a isso temos os incentivos do setor público à capacitação de seus funcionários. Neste trabalho investigamos os efeitos da obtenção do nível de pós-graduação sobre a transição de trabalhadores entre os setores público e privado. Checamos se existe uma tendência de que indivíduos com alto nível de habilidade, se utilizariam do serviço público como uma alavanca para obter vantagens salariais e incentivos ao estudo no início de carreira para depois migrarem para o setor privado. Realizamos regressões logísticas e probabilísticas dos fatores que levam um indivíduo a abandonar seu setor inicial, e uma regressão multinomial para comparar simultaneamente os fatores que levam a migração em qualquer sentido. Nossos resultados nos permitem descartar nossa hipótese inicial e ainda indicam que a tendência parece ir no sentido oposto.
+
+\end{abstract}
+
+\section{Introdução}
+
+Diversos são os motivos para se estudar as as características que diferem os empregos e trabalhadores dos setores público e privado. À princípio porque, apesar das diferenças intrínsecas entre as funções empregadas, é desejável manter um equilíbrio entre eles. Caso os empregos públicos percam a atratividade, o estado pode perder a capacidade de exercer suas funções vitais e ficar a mercê de um setor privado mais capacitado e com incentivos à cooptar agências reguladoras. Por outro lado, se oferecer demasiadas benesses a seus funcionários corre-se o risco de que o serviço público roube cérebros que poderiam estar desenvolvendo funções mais produtivas na área privada e aumentando diretamente o produto nacional.
+
+É comum se ouvir que no Brasil, de modo geral, penderíamos mais para o segundo caso do que para o primeiro, especialmente no que concerne ao servidores públicos federais. \citet{barros2000}, examinando a Pesquisa Nacional por Amostra de Domicílios (Pnad), encontram evidências positivas da existência de um hiato salarial beneficiando servidores públicos quando comparados aos empregados do setor privado, mas notam, no entanto, que tal hiato é composto predominantemente por diferenças na composição das forças de trabalho. Servidores tendem a possuir mais anos de experiência e maior nível educacional e isso comporia a maior parte do hiato salarial. Quando considerados tais fatores percebe-se que o hiato real é muito mais heterogêneo do que o inicialmente esperado, atingindo seu valor máximo para o Distrito Federal e chegando a ser negativo para a cidade de São Paulo.
+
+\citet{belluzzo2005} realiza investigação similar, porém se utilizando do ferramental de regressão quantílica para entender como o este hiato se expressa ao longo da distribuição de salários. O que eles encontram é que, nas esferas estadual e municipal, o diferencial público-privado beneficia os servidores nos quantis inferiores e decresce monotonicamente ao longo da distribuição de salários, se tornando nulo, ou mesmo negativo, quando se atinge os quantis superiores (especialmente no caso dos servidores municipais). Na esfera federal o padrão não é tão claro, sendo que o diferencial beneficia sempre os servidores e parece atingir seu pico no segundo quartil. Ainda assim é perceptível que os servidores nos quantis inferiores experimentam um diferencial proporcionalmente maior do que aqueles nos quantis superiores. Essa tendência parece se repetir internacionalmente, sendo que \citet{mueller1998} encontra resultado semelhante para o Canadá.
+
+Aliado a isso, existe ainda políticas para incentivar a capacitação dos servidores públicos, que permitem que servidores obtenham licenças para cursar mestrado e doutorado mantendo a remuneração de seu cargo. Este tipo de política visa capacitar o aparato estatal e certamente traz benefícios à sua atuação, especialmente no que concerne à atividades públicas que exigem um nível elevado de especialização. A Lei 11.907 de 2 de fevereiro de 2009 regulamenta a exigência de que o servidor permaneça no órgão a que pertence pelo mesmo tempo que passou fora durante a licença de capacitação.
+
+É natural esperar que os servidores que se beneficiem de tais licenças, com frequência pertençam aos quantis superiores das distribuições de salários, especialmente após o retorno da pós-graduação. Esta conjuntura poderia dar origem ao incentivo reverso de que indivíduos com alto nível de habilidade pudessem buscar o serviço público em estágios iniciais de suas carreiras, quando ainda não possuem ferramentas de sinalização para se diferenciar dos demais trabalhadores, de modo a se beneficiar do prêmio salarial do setor público e dos incentivos à pós-graduação, para, depois de concluído o período exigido, buscar melhores oportunidades na iniciativa privada.
+
+O objetivo deste trabalho é verificar se esta conjuntura se verifica na realidade. Ou seja, se trabalhadores do setor público apresentam uma tendência de migrar para a iniciativa privada após concluído o período exigido no retorno da pós-graduação. Além disso, investigamos os demais fatores que influenciam na tomada de decisão pelos agentes da transição entre os dois setores.
+
+Para isso seguimos de forma abrangente os trabalhos desenvolvidos em \citet{blank1985} e \citet{holts2017}. No primeiro a autora, movida em grande medida por um interesse similar ao deste trabalho, examina os determinantes na tomada de decisão por parte dos trabalhadores de qual setor trabalhar. Para isso ela realiza diversas regressões logísticas comparando as alternativas de se trabalhar no setor público ou privado, e, subdividindo o setor público, entre trabalhar no setor privado e na esfera federal ou estadual. Já \citet{holts2017} desenvolve uma regressão logística multinomial examinando os determinantes na decisão entre permanecer ou mudar de setor de trabalho utilizando dados do mercado de trabalho da Noruega entre 1995 e 2014. O objetivo do autor é examinar possíveis impactos ao sistema de pensões por conta de indivíduos que migram de setores de pensão privada para outros com regime especial de pensão.
+
+Menciono ainda o trabalho de \citet{monte2017}, onde o autor se utiliza de dados da Pesquisa Mensal de Emprego para verificar se existe uma diferença de comportamento entre trabalhadores que migram de um setor para o outro. Especificamente ele busca por uma diferença na probabilidade de um indivíduo realizar horas extras de trabalho sem remuneração dado que ele migrou ou não de setor, encontrando que os indivíduos advindos do setor privado tendem com mais frequência a realizar horas extras sem remuneração.
+
+Tanto no estudo de \citet{monte2017} quanto nos demais aqui citados existe uma fragilidade quando se considera a exogeneidade das informações dos trabalhadores. É impossível, com as bases de dados utilizadas, inferir se as diferenças de salário, escolhas ou esforço dispendido se originam, ou ao menos estão correlacionadas, com características não observáveis dos indivíduos. Ou seja, no caso de \citet{blank1985}, é impossível descartar totalmente a hipótese de que sejam características em comum aos indivíduos que optam pelo serviço público que os levam a se educar mais e não a educação que os leva escolher o serviço público, mas no contexto do objetivo a que aqui nos propomos tais características são pouco relevantes. Se a educação dos indivíduos em nossa amostra cumprir, ainda que em parte, um papel de sinalizar habilidade, o resultado manteria sua relevância para caracterizar os indivíduos que transitam entre os dois setores.
+
+Neste artigo faremos inicialmente regressões logísticas e probabilísticas identificando separadamente as características que levam indivíduos dos setores privado e público a migrarem de setor, e num segundo momento estimaremos uma regressão logística multinomial com efeitos aleatórios para caracterizar os indivíduos em cada um dos quatro grupos, servidores públicos que permanecem no setor público (1), servidores que migram para o setor privado (2), trabalhadores do setor privado que permanecem no setor privado (3) e trabalhadores privados que migram para o setor público (4). O resto do artigo se organiza da seguinte maneira: na próxima seção apresentamos em maior detalhe os modelos empíricos e os dados, na terceira sessão apresentamos os resultados e na última seção fazemos a conclusão.
+
+
+
+\section{Dados}
+
+Utilizamos os dados do período de 2007 a 2016 da Relação Anual de Informações Sociais (Rais) do Ministério do Trabalho. A base é preenchida pelos empregadores e contém todos os trabalhadores formais do país. Deste modo os  indivíduos não presentes nela trabalham informalmente, estão desempregados, ou trabalham como empreendedores individuais. A escolha do período se dá pois 2007 foi o primeiro ano em que a Rais reportou os níveis de mestrado e doutorado dos indivíduos observados. Neste trabalho os dois níveis são considerados juntos em uma única variável de pós-graduação. Apesar da distinção entre eles, a proporção de indivíduos com esses níveis educacionais é muito pequena na amostra, então fundi-las foi uma forma de contornar esta limitação. Dada a maior tendência à transições entre os setores nas capitais, que concentram a maior parte dos empregos públicos, restringimos a nossa amostra para trabalhadores destas cidades.
+
+Além disso, é importante destacar que não nos é muito claro o nível de confiança que podemos ter na variável do nível de instrução, sendo plausível supor que existem diversos indivíduos reportados com níveis de educação inferiores aos reais. Isso porque é possível que tenham obtido o último nível educacional após a contratação e a pessoa responsável por reportar os dados da empresa ao Ministério do Trabalho não tenha se dado ao trabalho de atualizá-los. É possível, inclusive, que estes dados sejam reportados de forma desproporcionalmente mais fidedigna para o setor público, onde os trabalhadores podem requisitar adicionais salariais por gratificação. De uma forma ou de outra, não é evidente o efeito que isto teria em nossas regressões, de modo que optamos por prosseguir apesar destas possíveis contaminações.
+
+Para a realização das regressões dividimos os indivíduos em quatros categorias. Os servidores públicos que permanecem no setor público (pub-pub), os servidores públicos que migram para o setor privado (pub-priv), os trabalhadores privados que permanecem no setor privado (priv-priv) e finalmente os trabalhadores do setor privado que migram para o serviço público. As categorias são definidas no período em que o indivíduo passa a pertencer ao novo setor. A tabela~\ref{tab1} apresenta as médias aritméticas por categoria de cada uma das variáveis.
+
+\begin{table}[H]
+\centering
+\caption{Médias das variáveis da amostra por categoria.}
+\label{tab1}
+\begin{tabular}{lcccc}
+ & pub-pub & pub-priv & priv-priv & priv-pub \\ \hline
+Mulher & 0.533013 & 0.407217 & 0.402007 & 0.510965 \\
+Fundamental 1 & 0.041228 & 0.02493 & 0.097559 & 0.01445 \\
+Fundamental 2 & 0.097042 & 0.092133 & 0.194255 & 0.077261 \\
+Médio & 0.356316 & 0.452906 & 0.529204 & 0.433981 \\
+Superior & 0.478957 & 0.392284 & 0.145898 & 0.452089 \\
+Pós-Graduação & 0.012923 & 0.031094 & 0.004331 & 0.017655 \\
+Pós-Recente & 0.005391 & 0.003766 & 0.001795 & 0.002952 \\
+Pós-Recente 2 & 0.001937 & 0.001735 & 0.000456 & 0.001157 \\
+lag Horas Extras & 0.031002 & 0.015492 & 0.345268 & 0.176399 \\ \hline
+Total & 31,348,650 & 479,545 & 136,126,410 & 835,443
+\end{tabular}
+\end{table}
+
+Optamos por incluir a educação dos indivíduos através de \textit{dummies} para permitir a flutuação dos coeficientes. As \textit{dummies} marcam apenas o grau mais elevado de educação do indivíduo. As variáveis \textit{Pós-Recente} e \textit{Pós-Recente 2} indicam, respectivamente, observações de indivíduos que concluíram uma pós-graduação nos últimos 4 anos, ou entre 4 e 8 anos atrás. A variável \textit{lag Horas Ext} indica se o indivíduo trabalhou horas extras em sua última observação.
+
+É importante destacar que existe atrito na amostra. Dada a natureza da Rais, sempre que um indivíduo perder seu emprego, ou simplesmente deixar de trabalhar formalmente, ele desaparece da base. No escopo deste artigo optamos por não modelar este período sem emprego formal, pois teríamos que assumir o valor das variáveis nos períodos não observados. Dado que nosso interesse é nas transições entre os dois setores os hiatos entre as observações não nos são tão preocupantes. Destacamos porém, que nos casos que um indivíduo trabalha em determinado ano, não trabalha no seguinte e depois retorna em outros setor, consideramos que isso configura efetivamente uma migração entre os dois setores.
+
+É interessante notar na tabela\ref{tab1} que indivíduos que se mantém no mesmo setor fazem horas extras com o dobro da frequência do que aqueles que migram. Percebe-se ainda que existe uma maior presença de mulheres no serviço público do que no privado e, inclusive, uma maior migração de mulheres do que de homens para o serviço público, resultado semelhante ao encontrado por \citet{blank1985}.
+
+Além disso, percebemos que indivíduos com maiores níveis educacionais possuem maior tendência a migrar. Este efeito é similar ao identificado por \citet{mendes2017}, no qual trabalhadores com maiores níveis de educação tem maior tendência a migrar para outras cidades e estados. E pode ser verificado mais diretamente na tabela~\ref{tab2}
+
+
+\begin{table}[H]
+\centering
+\caption{Distribuição dos estados de transição por nível educacional}
+\label{tab2}
+\begin{tabular}{lccc}
+ &  & \multicolumn{2}{c}{serv} \\
+Nível Educacional & l\_serv & 0 & 1 \\ \hline
+Geral & 0 & 0.993749 & 0.006251 \\
+Geral & 1 & 0.01517 & 0.98483 \\ \hline
+Fundamental 1 & 0 & 0.999092 & 0.000908 \\
+Fundamental 1 & 1 & 0.009165 & 0.990835 \\ \hline
+Fundamental 2 & 0 & 0.997565 & 0.002435 \\
+Fundamental 2 & 1 & 0.014316 & 0.985684 \\ \hline
+Médio & 0 & 0.994992 & 0.005008 \\
+Médio & 1 & 0.019073 & 0.980927 \\ \hline
+Superior & 0 & 0.981338 & 0.018662 \\
+Superior & 1 & 0.012374 & 0.987626 \\ \hline
+Pós-Graduação & 0 & 0.975593 & 0.024407 \\
+Pós-Graduação & 1 & 0.035499 & 0.964501
+\end{tabular}
+\end{table}
+
+Apesar de ainda não ser possível obter nenhuma conclusão definitiva neste ponto, já se pode notar que existe uma maior tendência de que trabalhadores pós-graduados saiam do serviço público para a iniciativa privada do que façam o sentido contrário.
+
+\section{Metodologia}
+
+Como destacado acima, aplicamos dois modelos distintos. Primeiramente estimamos regressões logísticas e probabilísticas para cada setor para identificar os indivíduos que o estão abandonando. Em um segundo momento estimamos um modelo logístico multinomial para caracterizar os indivíduos que se encontram em cada uma das quatro situações. Em ambos os casos, dada a natureza de painel dos dados, nos utilizamos do ferramental de efeitos aleatórios. Descartamos a opção de usar efeitos fixos por conta da pouca variabilidade no tempo de algumas de nossas variáveis. Apesar da robustez do banco de dados, as observações com níveis de pós-graduação na amostra não são tão numerosas, de modo que, se incorporássemos efeitos fixos ao nível individual, estes poderiam capturar grande parte dos efeitos que buscamos evidenciar.
+
+Tanto o modelo de regressão logística quanto o de regressão probabilística partem de suposições sobre a distribuição de probabilidade da variável dependente binária condicional às variáveis explicativas. Expomos aqui brevemente o modelo logístico e multinomial logístico\footnote{Para uma exposição mais detalhada: \citet{wool2010} ou \citet{triv2005} }. Dada uma variável binária $y_{i,t}$ e uma matriz de variáveis explicativas $X_{it}$ assumimos que:
+$$ P(y_{it} = 1| X_{it}) = \frac{\exp(X_{it}b)}{1 + \exp(X_{it}b)}, $$
+dada esta suposição, podemos obter o estimador $\hat{\beta}$ através de um estimador de máxima verossimilhança. Para considerar o aspecto de painel dos dados, no entanto, devemos incorporar que a variância possui dois componentes, o primeiro comum à todas observações e o segundo específico para cada indivíduo e, portanto, comum à todas observações de um mesmo indivíduo. Levando em consideração tal estrutura de covariância obtemos o estimador logístico de efeitos aleatórios.
+
+No modelo que estimamos teremos:
+
+\begin{align*}
+X_{it}b = \alpha_{UF} + \alpha_{ano} + & b_0 + b_1*(mulher) + b_2*fundamental\_1 + b_3*fundamental\_2 \\
+& + b_4*medio  + b_5*superior + b_6*pos\_grad + b_7*pos\_recente \\
+& + b_8*pos\_recente2 + b_9*l\_horas\_ext + u_{it}.
+\end{align*}
+
+O mesmo valerá para a regressão logística multinomial. Não utilizaremos nenhuma variável específica por alternativo, de modo que o modelo multinomial se resumirá a:
+
+$$ P(y_{it} = j| X_{it}) = \frac{\exp(X_{it}b_j)}{1 + \sum_{j=1}^{3}\exp(X_{it}b_j)}, \textrm{ se } j \in \{1,2,3\}, $$
+e
+$$ P(y_{it} = 0| X_{it}) = \frac{1}{1 + \sum_{j=1}^{3}\exp(X_{it}b_j)}. $$
+
+Em que a categoria base $y_{it} = 0$ é a dos trabalhadores privados que permanecem no setor privado.
+
+Nossas principais variáveis de interesse são $b_6, b_7$ e $b_8$. A partir delas poderemos verificar se existe uma tendência de que trabalhadores tendam a migrar do setor público ou para o setor público depois de se especializarem. O coeficiente $b_9$ é incluído levando em consideração o trabalho de \citet{monte2017} em que a variável de horas extras é utilizada como \textit{proxy} para o esforço do trabalhador para examinar se servidores públicos tendem a se esforçar menos do que seus pares na iniciativa privada. Aqui buscamos a relação inversa, ou seja, se indivíduos que demonstram um esforço maior, através das horas extras, tendem a mudar de setor. As demais variáveis servem de controle.\footnote{Inicialmente consideramos também variáveis binárias para a raça do indivíduo, mas, dado que não pareciam auxiliar no modelo, foram excluídas da versão final.}
+ 
+\section{Resultados}
+
+A tabela \ref{tab3} apresenta o resultado das primeiras regressões. O Logit 1 e Probit 1 estimam a probabilidade de que um servidor público migre para o setor privado enquanto o Logit 2 e Probit 2 estimam a probabilidade de que um trabalhador do setor privado faça o caminho inverso.
+
+
+
+\begin{table}[H]
+\centering
+\caption{Resultado das regressões logísticas e probabilísticas}
+\label{tab3}
+\begin{tabular}{lcccc} \hline
+ & (1) & (2) & (3) & (4) \\
+ & pub-priv & priv-pub & pub-priv & priv-pub\\
+Vars & Logit 1 & Logit 2 & Probit 1 & Probit 2 \\ \hline
+ &  &  &  &  \\
+Mulher & -0.530*** & 0.150*** & -0.217*** & 0.0553*** \\
+ & (0.00329) & (0.00242) & (0.00130) & (0.000893) \\
+Fundamental 1 & 0.410*** & -0.0224 & 0.152*** & -0.00751 \\
+ & (0.0211) & (0.0204) & (0.00793) & (0.00611) \\
+Fundamental 2 & 0.896*** & 0.908*** & 0.338*** & 0.288*** \\
+ & (0.0195) & (0.0183) & (0.00735) & (0.00552) \\
+Medio & 1.138*** & 1.617*** & 0.437*** & 0.537*** \\
+ & (0.0190) & (0.0179) & (0.00712) & (0.00539) \\
+Superior & 0.838*** & 3.016*** & 0.321*** & 1.058*** \\
+ & (0.0190) & (0.0179) & (0.00714) & (0.00541) \\
+Pós-Graduação & 2.428*** & 3.633*** & 1.037*** & 1.320*** \\
+ & (0.0219) & (0.0206) & (0.00878) & (0.00703) \\
+Pós-Recente & -2.399*** & -1.356*** & -0.988*** & -0.545*** \\
+ & (0.0271) & (0.0228) & (0.0112) & (0.00892) \\
+Pós-Recente 2 & -2.359*** & -0.819*** & -0.980*** & -0.331*** \\
+ & (0.0387) & (0.0353) & (0.0163) & (0.0142) \\
+lag Horas Ext & -0.625*** & -0.638*** & -0.229*** & -0.221*** \\
+ & (0.0131) & (0.00296) & (0.00478) & (0.00104) \\
+Constante & -5.407*** & -5.890*** & -2.619*** & -2.726*** \\
+ & (0.0273) & (0.0213) & (0.0104) & (0.00707) \\
+ &  &  &  &  \\
+ Num. de Observações & 31,828,195 & 136,961,853 & 31,828,195 & 136,961,853 \\ 
+ Pseudo-$R^2$ & 0.0564 &  0.0927 & 0.0550 & 0.0915 \\ \hline
+\multicolumn{5}{c}{ Erros padrão robustos em parenteses} \\
+\multicolumn{5}{c}{ *** p$<$0.01, ** p$<$0.05, * p$<$0.1} \\
+\end{tabular}
+
+\end{table}
+
+
+
+Percebemos que o nível de pós-graduação é bastante relevante para determinar ambas as transições, principalmente no sentido \textit{priv-pub}. No entanto, este efeito é praticamente anulado para os servidores públicos que obtiveram o título nos últimos 8 anos. O que percebemos é que a magnitude dos coeficientes para \textit{Pós-Recente} e \textit{Pós-Recente 2} é quase idêntica ao de \textit{Pós-Graduação}, porém com sentido inverso, resultado que se mantém tanto no Logit quanto no Probit. Tal resultado nos permite descartar a hipótese inicial de que trabalhadores se aproveitem do hiato salarial e os incentivos do serviço público à capacitação para depois migrar para o setor privado.
+
+De fato, de acordo com os resultados da tabela \ref{tab3}, o contrário parece ser bem mais provável. Que trabalhadores privados, após se educarem, migrem para o setor público. Seja porque tal setor oferece incentivos para trabalhadores especializados ou porque muitas vezes a especialização facilita a entrada no setor público através da prova de títulos. Ainda assim percebemos que, dado o sinal negativo para os coeficientes de \textit{Pós-Recente} e \textit{Pós-Recente 2}, a probabilidade de um trabalhador privado migrar para o setor público parece aumentar com o passar do tempo.
+
+O resultado confirma ainda o observado na tabela \ref{tab1} de que mulheres tem uma maior probabilidade a migrar e permanecer no serviço público. E destacamos a diferença de magnitude entre os coeficientes para \textit{Superior} entre as regressões \textit{pub-priv} e \textit{priv-pub}, evidenciando o forte peso do nível superior para possibilitar a entrada do trabalhador no serviço público.
+
+A tabela \ref{tab4} apresenta os resultados da regressão logística multinomial, em que tomamos como base a categoria \textit{priv-priv}, de modo que os coeficientes se expressam todos com relação a ela. Desta forma, o fato do coeficiente de \textit{lag Horas Ext} ser negativo para as três categorias apresentadas indica que, dado que um indivíduo fez horas extras no período anterior, é mais provável que ele pertença ao setor privado, e tenha se mantido lá, do que que pertença a qualquer uma das demais categorias. A vantagem da regressão logística sobre as anteriores é que ela permite a comparação do mercado de trabalho como um todo, especificando as propensões ao pertencimento de cada setor simultaneamente.
+
+
+
+\begin{table}[H]
+\centering
+\caption{Resultado da regressão multinomial}
+\label{tab4}
+\begin{tabular}{lccc} \hline
+ & (pub-pub) & (pub-priv) & (priv-pub) \\
+Vars & Multinomial Logit & Multinomial Logit & Multinomial Logit \\ \hline
+ &  &  &   \\
+Mulher & 0.203*** & -0.314*** &  0.149*** \\
+ & (0.00117) & (0.00313) &  (0.00242) \\
+Fundamental 1 & -0.109*** & 0.162***  & -0.00521 \\
+ & (0.00449) & (0.0201) &  (0.0204) \\
+Fundamental 2 & -0.0144*** & 0.722***  & 0.925*** \\
+ & (0.00420) & (0.0185) &  (0.0183) \\
+Medio & 0.270*** & 1.353*** &  1.640*** \\
+ & (0.00406) & (0.0180) &  (0.0179) \\
+Superior & 1.806*** & 2.520*** & 3.038*** \\
+ & (0.00409) & (0.0181) &  (0.0179) \\
+Pos Graduação & 1.460*** & 3.819*** &  3.610*** \\
+ & (0.00788) & (0.0205) &  (0.0206) \\
+Pos Recente & 0.166*** & -1.948*** &  -1.567*** \\
+ & (0.00800) & (0.0258) &  (0.0230) \\
+Pos Recente 2 & 0.647*** & -1.362*** &  -1.291*** \\
+ & (0.0118) & (0.0372) &  (0.0353) \\
+lag Horas Ext & -2.606*** & -3.356*** &  -0.632*** \\
+ & (0.00240) & (0.0119) &  (0.00296) \\
+Constante & -0.838*** & -6.208*** &  -5.891*** \\
+ & (0.00794) & (0.0264) &  (0.0213) \\
+ &  &  &   \\
+ Num. de Observações & \multicolumn{3}{c}{168,790,048} \\ 
+ Pseudo-$R^2$ & \multicolumn{3}{c}{0.1951}\\ \hline
+\multicolumn{4}{c}{ Erros padrão robustos entre parenteses} \\
+\multicolumn{4}{c}{ *** p$<$0.01, ** p$<$0.05, * p$<$0.1} \\
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[H]
+\centering
+\caption{Probabilidades marginais estimadas da regressão multinomial.}
+\label{tab5}
+\begin{tabular}{ccccccc}
+\multicolumn{3}{c}{Variáveis Explicativas} & \multicolumn{4}{c}{\begin{tabular}[c]{@{}c@{}}Prob. Estimada de pertencimento \\ às Categorias\end{tabular}} \\ \hline
+pos\_grad & pos\_recente & pos\_recente2 & pub-pub & pub-priv & priv-priv & priv-pub \\
+0 & 0 & 0 & \begin{tabular}[c]{@{}c@{}}0.1842\\ (0.0000)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0027\\ (0.0000)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.8081\\ (0.0000)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0048\\ (0.0000)\end{tabular} \\
+1 & 1 & 0 & \begin{tabular}[c]{@{}c@{}}0.4223\\ (0.0012)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0086\\ (0.0002)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.5495\\ (0.0012)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0194\\ (0.0005)\end{tabular} \\
+1 & 0 & 1 & \begin{tabular}[c]{@{}c@{}}0.5012\\ (0.0020)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0115\\ (0.0004)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.4670\\ (0.0018)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0200\\ (0.0007)\end{tabular} \\
+1 & 0 & 0 & \begin{tabular}[c]{@{}c@{}}0.3411\\ (0.0015)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0546\\ (0.0009)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.5203\\ (0.0014)\end{tabular} & \begin{tabular}[c]{@{}c@{}}0.0839\\ (0.0014)\end{tabular}
+\end{tabular}
+\end{table}
+
+
+A tabela \ref{tab5} apresenta as probabilidades estimadas de pertencimento à cada categoria  partir destes resultados, obtemos que dado um trabalhador com nível superior (sem pós-graduação), a probabilidade de que ele faça a migração pub-priv é pouco mais da metade da probabilidade de que ele faça o sentido inverso. No momento em que este trabalhador obtém uma pós-graduação ($ pos\_grad = 1, pos\_recente = 1 $) ela decresce para um pouco menos da metade. E a partir disto segue crescendo até que 8 anos ou mais após a obtenção do título ($ pos\_grad = 1, pos\_recente = 0, pos\_recente2 = 0 $) ela seja aproximadamente 65\% da probabilidade de que o trabalhador faça a migração inversa. O que percebemos é que mesmo depois de as exigências de permanência no seu respectivo órgão sejam cumpridas, os servidores públicos não se mostram mais propensos a migrar para o setor privado do que os trabalhadores do setor privado a migrar para o setor público. Ou seja, o que percebemos é que existe sim uma maior tendência de migração de setores por trabalhadores com um maior nível de instrução, mas esta tendência parece pender mais para o sentido \textit{priv-pub}. Uma importante influência neste sentido deve ser a predominância de universidades públicas no país, que certamente absorvem uma considerável proporção dos trabalhadores com nível de pós-graduação.
+
+
+\section{Conclusão}
+
+O objetivo deste trabalho foi estudar os impactos da obtenção de níveis superiores de educação sobre a transição de trabalhadores entre os setores público e privado. Os resultados tanto das regressões logísticas e probabilísticas iniciais quanto da estimação do modelo logístico multinomial nos permitem descartar a nossa hipótese inicial de que os incentivos proporcionados pelas políticas de incentivo à capacitação unidos à maiores salários nos quantis inferiores da distribuição de remuneração levariam indivíduos a buscar o serviço público para se alavancar no início da carreira. De fato o sentido contrário parece ser dominante, principalmente nos 8 anos que seguem a obtenção do título de pós-graduação.
+
+É possível que encontrássemos resultados diferentes se separássemos as \textit{dummies} para mestrado e doutorado, mas, pelo menos no âmbito deste trabalho, nenhum dos resultados nos deu indicações neste sentido.
+
+Futuramente, caso haja interesse em estender o escopo do trabalho, poderiam ser inclusos os dados de empreendedores individuais e uma categoria para os indivíduos que saem da base durante o período examinado. Além disso, seria válido o esforço de verificar a fidelidade dos dados presentes na Rais, especialmente no que concerne aos graus de instrução, para validar, não somente os resultados presentes neste trabalho, quanto outros que se possam executar com esta base de dados.
+
+
+\bibliographystyle{apalike2.bst}
+\bibliography{bibliografia}
+
+\end{document}
